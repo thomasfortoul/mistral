@@ -1,10 +1,10 @@
-# HireMeGPT - Mistral RAG Chat
+# Mistral RAG Chat
 
 A polished RAG (Retrieval-Augmented Generation) system built with FastAPI and Mistral AI that answers questions using grounded retrieval over markdown documents.
 
-## What it is
+## About This Project
 
-This project implements a production-ready RAG pipeline following Mistral's official quickstart pattern:
+This is the Mistral Internship Project application that implements a production-ready RAG pipeline following Mistral's official quickstart pattern:
 - Load and chunk markdown documents from `/data`
 - Create embeddings with Mistral's `mistral-embed` model
 - Index embeddings in FAISS (`IndexFlatL2`)
@@ -32,7 +32,7 @@ This project implements a production-ready RAG pipeline following Mistral's offi
 1. Clone the repository:
 ```bash
 git clone <your-repo-url>
-cd hire-me-gpt
+cd mistral
 ```
 
 2. Install dependencies:
@@ -45,13 +45,7 @@ pip install -r requirements.txt
 export MISTRAL_API_KEY="your-api-key-here"
 ```
 
-4. Add your markdown files to the `data/` directory:
-```bash
-# Place your .md files in data/
-# Example: data/job_description.md, data/resume.md, etc.
-```
-
-5. Build the index:
+4. Build the index:
 ```bash
 python scripts/ingest.py
 ```
@@ -62,7 +56,7 @@ This will:
 - Create embeddings using `mistral-embed`
 - Build a FAISS index and save to `storage/`
 
-6. Start the API server:
+5. Start the API server:
 ```bash
 uvicorn services.api.app.main:app --reload --port 8000
 ```
@@ -110,7 +104,7 @@ curl -X POST http://localhost:8000/chat \
 ### Directory Structure
 
 ```
-hire-me-gpt/
+mistral/
 ├── services/
 │   └── api/
 │       └── app/
@@ -165,6 +159,12 @@ hire-me-gpt/
 - `MISTRAL_CHAT_MODEL` (optional): Chat model to use (default: `mistral-large-latest`)
 - `RAG_INDEX_DIR` (optional): Directory for FAISS index (default: `storage`)
 
+sample:
+```bash
+MISTRAL_API_KEY= your-api-key-here
+MISTRAL_CHAT_MODEL=mistral-small-latest
+RAG_INDEX_DIR=storage
+```
 ## Future Improvements
 
 - [ ] Streaming responses for real-time chat experience
@@ -178,3 +178,7 @@ hire-me-gpt/
 ## License
 
 MIT
+
+---
+
+Thanks for looking this over. Really looking forward to the next steps.
