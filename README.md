@@ -166,15 +166,6 @@ MISTRAL_API_KEY= your-api-key-here
 MISTRAL_CHAT_MODEL=mistral-small-latest
 RAG_INDEX_DIR=storage
 ```
-## Future Improvements
-
-- [ ] Streaming responses for real-time chat experience
-- [ ] Support for multiple conversation history
-- [ ] Add evaluation metrics (groundedness, citation coverage)
-- [ ] Hybrid search (keyword + semantic)
-- [ ] Next.js frontend with chat UI
-- [ ] Docker Compose setup
-- [ ] Unit tests for RAG components
 
 ## License
 
