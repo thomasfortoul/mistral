@@ -155,6 +155,7 @@ mistral/
 
 ## Environment Variables
 
+Create a .env file in the root directory with the following variables:
 - `MISTRAL_API_KEY` (required): Your Mistral API key
 - `MISTRAL_CHAT_MODEL` (optional): Chat model to use (default: `mistral-large-latest`)
 - `RAG_INDEX_DIR` (optional): Directory for FAISS index (default: `storage`)
