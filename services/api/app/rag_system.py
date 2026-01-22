@@ -249,13 +249,29 @@ Answer:
         retrieved = self.retrieve(question, k=k)
         prompt = self.build_prompt(retrieved, question)
 
+        # Load the system prompt from file
+        system_prompt_path = Path(__file__).parent / "system_prompt.txt"
+        system_prompt = ""
+        if system_prompt_path.exists():
+            system_prompt = system_prompt_path.read_text(encoding="utf-8")
+        
         chat_response = self.client.chat.complete(
             model=self.chat_model,
-            messages=[{"role": "user", "content": prompt}],
+            messages=[
+                {"role": "system", "content": system_prompt},
+                {"role": "user", "content": prompt}
+            ],
         )
         text = chat_response.choices[0].message.content
+        
+        # Remove citations from the answer text, but keep them separately
+        import re
+        # Remove citations in format [chunk_id | title] or [chunk_id]
+        cleaned_text = re.sub(r'\[[^\]]*\|?[^\]]*\]', '', text)
+        # Clean up any extra whitespace created by removing citations
+        cleaned_text = re.sub(r'\s+', ' ', cleaned_text).strip()
 
         return {
-            "answer": text,
+            "answer": cleaned_text,
             "citations": self.format_citations(retrieved),
         }
